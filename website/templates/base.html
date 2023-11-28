@@ -1,4 +1,4 @@
-<!-- Jinga - templating language -->
+<!-- Jinja - templating language -->
 
 <!DOCTYPE html>
 <html>
@@ -17,25 +17,31 @@
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         crossorigin="anonymous"
         />
-        <!-- Jinga Syntax: {% %} or {{ }}-->
         <title>{% block title %}Home{% endblock %}</title> <!-- define a block template that is editable -->
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- bootstrap classes-->
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar"> <!-- button to expand navbar on a small screen -->
-                <span class="navbar-toggle-icon"></span>
+            <button 
+                class="navbar-toggler" 
+                type="button" 
+                data-toggle="collapse" 
+                data-target="#navbar"
+            > <!-- button to expand navbar on a small screen -->
+                <span class="navbar-toggler-icon"></span>
             </button> 
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                    <a class="nav-item nav-link" id="register" href="/register">Login</a>
-                    <a class="nav-item nav-link" id="logout" href="/logout">Login</a>
+                    <a class="nav-item nav-link" id="register" href="/register">Register</a>
+                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
                     <a class="nav-item nav-link" id="logout" href="/">Home</a>
                 </div>
             </div>
-        
         </nav> 
-
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
