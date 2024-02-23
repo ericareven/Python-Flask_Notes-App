@@ -22,6 +22,8 @@ def create_app():
 
     from .models import Note, User 
 
+    create_database(app)
+
     with app.app_context():
         db.create_all()
 
