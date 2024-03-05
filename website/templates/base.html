@@ -20,19 +20,20 @@
         <title>{% block title %}Home{% endblock %}</title> <!-- define a block template that is editable -->
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- bootstrap classes-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
+            <span class="navbar-brand" id="greeting">{% if user.is_authenticated %}Hi {{ user.first_name }}{% endif %}</span>
             <button 
                 class="navbar-toggler" 
                 type="button" 
                 data-toggle="collapse" 
                 data-target="#navbar"
-            > <!-- button to expand navbar on a small screen -->
+            > 
                 <span class="navbar-toggler-icon"></span>
             </button> 
             <div class="collapse navbar-collapse" id="navbar">
-                <div class="navbar-nav">
+                <div class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" id="logout" href="/">Home</a>
+                    <a class="nav-item nav-link" id="logout" href="/">Notes</a>
                     <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
                     {% else %}
                     <a class="nav-item nav-link" id="login" href="/login">Login</a>
@@ -40,7 +41,7 @@
                     {% endif %}
                 </div>
             </div>
-        </nav> 
+        </nav>
 
         <!-- # display flash messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
