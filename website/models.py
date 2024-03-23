@@ -9,6 +9,13 @@ class Note(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now()) # func = get today's date
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # one(user) to many(notes) relationship: one object(parent) has many children
 
+class Journal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    data = db.Column(db.String(10000))
+    date = db.Column(db.DateTime(timezone=True), default=func.now()) # func = get today's date
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # one(user) to many(notes) relationship: one object(parent) has many children
+
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
