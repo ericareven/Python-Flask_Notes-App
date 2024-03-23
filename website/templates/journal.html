@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Journal{% endblock %}
+
+{% block content %}
+<h1 align="center">Journal</h1>
+<ul class="list-group list-group-flush" id="journal">
+    {% for journal in user.journal %}
+    <li class="list-group-item">
+        {{ journal.data }}
+        <button type="button" class="close" onclick="deleteJournal({{ journal.id }})">
+            <span aria-hidden='true'>&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="journal" id="journal" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Journal Entry</button>
+    </div>
+</form>
+{% endblock %}
