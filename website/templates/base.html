@@ -98,6 +98,16 @@
                 });
             }
         </script>
+        <script type="text/javascript">
+            function deleteJournal(journalId) {
+                fetch("/delete-journal", {
+                    method: "POST",
+                    body: JSON.stringify({ journalId: journalId }),
+                }).then((_res) => {
+                    window.location.href = "/journal";
+                });
+            }
+        </script>
     {% endblock %}
     </body>
 </html>

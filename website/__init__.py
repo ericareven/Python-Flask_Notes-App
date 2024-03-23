@@ -20,7 +20,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/') # we do ont want any prefix, so not /auth
 
-    from .models import Note, User 
+    from .models import Note, Journal, User 
 
     # create_database(app)
 
