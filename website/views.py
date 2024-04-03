@@ -1,8 +1,11 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note, Journal
+from .models import Note, Journal, DailyPrompt
+from datetime import datetime
+from .prompts import daily_prompts
 from . import db
 import json
+import random
 
 views = Blueprint('views', __name__)
 
@@ -41,6 +44,21 @@ def delete_note():
 @views.route('/journal', methods=['GET', 'POST'])
 @login_required
 def journal():
+    # Get the last used prompt
+    daily_prompt = DailyPrompt.query.first()
+    # If no prompt exists or the last used date is not today, generate a new prompt
+    if not daily_prompt or daily_prompt.last_used_date != datetime.today().date():
+        prompt_text = random.choice(daily_prompts)
+        
+        # Update or create a new DailyPrompt record
+        if not daily_prompt:
+            daily_prompt = DailyPrompt(prompt=prompt_text, last_used_date=datetime.today().date())
+            db.session.add(daily_prompt)
+        else:
+            daily_prompt.prompt = prompt_text
+            daily_prompt.last_used_date = datetime.today().date()
+        db.session.commit()
+
     if request.method == 'POST': 
         journal = request.form.get('journal') #Gets the journal entry from the HTML 
 
@@ -53,7 +71,7 @@ def journal():
             db.session.commit()
             flash('Journal entry added!', category='success')
 
-    return render_template("journal.html", user=current_user)
+    return render_template("journal.html", user=current_user, daily_prompt=daily_prompt.prompt)
 
 
 @views.route('/delete-journal', methods=['POST'])

@@ -5,6 +5,8 @@
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
     <li class="list-group-item">
+        <small><em>{{ note.date.strftime('%m-%d-%Y') }}</em></small>
+        <br>
         {{ note.data }}
         <button type="button" class="close" onclick="deleteNote({{ note.id }})">
             <span aria-hidden='true'>&times;</span>
