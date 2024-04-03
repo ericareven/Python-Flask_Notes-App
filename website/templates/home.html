@@ -2,23 +2,10 @@
 
 {% block content %}
 <h1 align="center">Home</h1>
-<!-- <ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class="list-group-item">
-        <small><em>{{ note.date.strftime('%m-%d-%Y') }}</em></small>
-        <br>
-        {{ note.data }}
-        <button type="button" class="close" onclick="deleteNote({{ note.id }})">
-            <span aria-hidden='true'>&times;</span>
-        </button>
-    </li>
-    {% endfor %}
-</ul>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-    </div>
-</form> -->
+<br>
+<h4 align="center">
+    <blockquote>
+        <p>{{ random_quote }}</p>
+    </blockquote>
+</h4>
 {% endblock %}
