@@ -15,7 +15,12 @@ class Journal(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now()) # func = get today's date
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # one(user) to many(journal entries) relationship: one object(parent) has many children
 
-# Add this model to your models.py file
+class Mood(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    mood = db.Column(db.String(100)) 
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
 class DailyPrompt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     prompt = db.Column(db.String(1000))

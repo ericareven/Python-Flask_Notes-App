@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Mood{% endblock %}
+
+{% block content %}
+<h1 align="center">Mood</h1>
+<!-- <table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Mood</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mood_entry in mood_entries %}
+        <tr>
+            <td>{{ mood_entry.date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ mood_entry.mood }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> -->
+{% endblock %}
